@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Searchbar</title>
+</head>
+<body>
+    <div class="header" style="text-align: center;">
+        <span id="header_line1" style="text-align: center;">
+            <h1>Welcome to Our Product Search</h1>
+        </span>
+    </div>
+
+    <div id="search-container">
+        <form id="search-form" method="POST">
+            <input type="text" id="search-input" name="message" placeholder="Search for a product...">
+            <button type="submit" id="search-button">Search</button>
+        </form>
+        <div id="search-output" class="search-output">
+            {{ response }}
+            <div id="image-display">
+                {% if image_paths %}
+                <div class="images">
+                    <ul>
+                        {% for image_path in image_paths %}
+                            <li><img src="{{ url_for('static', filename=image_path) }}" alt="Image"></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='search.js') }}"></script>
+</body>
+</html>
